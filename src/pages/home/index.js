@@ -1,14 +1,16 @@
 import React from "react";
-import { View, FlatList, TouchableOpacity, Image } from "react-native";
+import { View, ScrollView } from "react-native";
 import { Button, Title  } from 'react-native-paper'
 import styles from "./styles";
 import Header from "../../components/header";
 import Hero from '../../components/hero';
 import ButtomVertical from "../../components/buttomVertical";
+import Previas from "../../components/previas";
+
 
 const Home = () => {
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
 
             <Header/>
             <Hero/>
@@ -21,23 +23,12 @@ const Home = () => {
                 <ButtomVertical icon="information-outline" text="Saiba Mais"/>
             </View>
 
-            <View>
-                <Title>Prévias</Title>
-                <FlatList 
-                    style={styles.flatListContainer}
-                    data={[1,2,3,4,5,6,7]}
-                    renderItem={({index,item}) => (
-                        <TouchableOpacity key={index}>
-                            <View style={styles.oval}>
-                                <Image source={{uri:"https://i.imgur.com/EJyDFeY.jpg"}}/>
-                                <Image source={{uri:"https://i.imgur.com/EJyDFeY.jpg"}}/>
-                            </View>   
-                        </TouchableOpacity>
-                    )}
-                />
+            <View style={styles.previaContainer}>
+                <Title style={styles.previaTitle}>Prévias</Title>
+                <Previas/>
             </View>
             
-        </View>
+        </ScrollView>
     );
 };
 

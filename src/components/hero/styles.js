@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         width:300,
         height:150,
         position:'absolute',
-        zIndex:10
+        zIndex:10,
     },
     containerTop10:{
         position:'absolute',

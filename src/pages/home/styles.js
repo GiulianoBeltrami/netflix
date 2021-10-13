@@ -11,15 +11,12 @@ const styles = StyleSheet.create({
         flexDirection:"row",
         justifyContent:"space-evenly"
     },
-    flatListContainer:{
+    previaContainer:{
         width:"100%",
-        height:100,
-        marginTop:10,
-        marginBottom:50,
-        backgroundColor:"#f09"
+        marginTop:50
     },
-    oval:{
-        backgroundColor:"#E5"
+    previaTitle:{
+        marginLeft:20
     }
 });
 
