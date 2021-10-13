@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Login from './src/pages/login';
 import Home from './src/pages/home';
+
 import {DefaultTheme ,Provider as PaperProvider } from 'react-native-paper'
 import {StatusBar} from 'react-native'
 
@@ -27,11 +28,3 @@ export default function App() {
   );
 }
 
-const Styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
