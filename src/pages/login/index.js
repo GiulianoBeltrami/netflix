@@ -3,13 +3,12 @@ import { Text, View , Image} from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import styles from "./styles";
 
-const Login = () => {
+const Login = ({navigation}) => {
 
     const [credenciais,setCredenciais] = useState({
         email:'',
         senha:''
     })
-
 
     return (
         //View é como uma div
@@ -38,7 +37,10 @@ const Login = () => {
                 <Button
                     mode="contained"
                     style={styles.marginBottom}
-                    onPress={() => console.log("teste")}
+                    onPress={() => {
+                        //Enviar requisicao de login
+                        //Criar servidor node.js 
+                    }}
                     >
                     Entrar
                 </Button>

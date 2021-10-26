@@ -1,9 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Login from './src/pages/login';
-import Home from './src/pages/home';
-import Filme from './src/pages/filme';
-
+import Routes from './routes';
 import {DefaultTheme ,Provider as PaperProvider } from 'react-native-paper'
 import {StatusBar} from 'react-native'
 
@@ -24,7 +20,7 @@ export default function App() {
   return (
     <PaperProvider theme={theme}>
       <StatusBar backgroundColor="#000"/>
-      <Filme />
+      <Routes />
     </PaperProvider>
   );
 }

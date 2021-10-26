@@ -30,6 +30,7 @@ const Filme = () => {
                     setVisible(false);
                     setTemporada(result.selectedItem);
                 }}
+                onCancel= {() =>{}}
             />
 
             <ScrollView style={styles.container}>
