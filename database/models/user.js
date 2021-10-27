@@ -7,9 +7,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-
-    //funções de validação
+    
   };
+
   user.init({
     email: { type:DataTypes.STRING, allowNull:false, unique:true },
     senha: { type:DataTypes.STRING, allowNull:false }

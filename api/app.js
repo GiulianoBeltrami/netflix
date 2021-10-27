@@ -1,8 +1,15 @@
-const app = require('./express')();
+const express = require('express');
 const config = require('./config.json');
+const serverPort = config['server'].port;
+const loginRouter = require('./routes/loginRoutes');
 
-port = config['server'].port;
+const application = express();
+application.use(express.json());
+application.use(express.urlencoded({ extended: true}));
 
-app.listen(port, () => {
-    console.log(`App listening at http://localhost:${port}`)
+application.use('/api/login',loginRouter);
+
+
+application.listen(serverPort, () => {
+    console.log(`App listening at http://localhost:${serverPort}`)
 });

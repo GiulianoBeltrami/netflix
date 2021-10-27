@@ -1,27 +1,20 @@
-const model = require('../../database/models');
-const { Op } = require("sequelize");
-const { user } = model;
+//Controller -> responsável pela intermediação da interação entre o usuário e o modelo
+const modelDatabase = require('../../database/models');
+const { Op }  = require("sequelize");
+const { user } = modelDatabase;
 
 module.exports = {
-
-    async data(req,res){
-        try {
-            const email = req.body.email;
-            const senha = req.body.senha;
-
-            if (email && senha){
-                res.status(200);
-                return this.auth(email,senha);
-                
-            }
-            else{
-                //preencher todos
-            }
-        } catch (error) {
-            console.log(error);
-        }
+    async authenticateLogin(email,senha){
+        //procurar
+        const userId = await user.findOne({where:{
+            [Op.and]:[{email:email}, {senha:senha}]
+        }});   
+        return userId;
     }
-};
+}
+
+
+
 
 
     // async auth(req, res) {
