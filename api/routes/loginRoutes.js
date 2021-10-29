@@ -1,17 +1,24 @@
 const roteador = require('express').Router();
-const loginController = require('../controllers/LoginController');
+const loginController = require('../controllers/loginController');
 
-roteador.get('/authenticate', function(requisition,response){
-    //realizar autentificação dos dados que virão em json
+roteador.get('/authenticate',async function(requisition,response){
+    
  
-    const userId = loginController.authenticateLogin(requisition.body.email,requisition.body.senha);
-    if(userId){
-        response.send("OK");
-    }
-    else{
-        response.send("Erro");
-    }
-});
+   const {userEmail, userSenha} = requisition.body;
+   
+   if(userEmail && userSenha){
+       //Função de verificar se o usuário existe-> usada mais de uma vez, abstrair
+        //verificar se o usuário existe
 
+        //fazer comparacao da senha digitada e a do banco
+
+            //retornar -> OK
+
+            //retorn   -> inválido
+   }
+   else{
+        response.status(400).send("Preencha todos os campos");
+   }
+});
 
 module.exports = roteador;
