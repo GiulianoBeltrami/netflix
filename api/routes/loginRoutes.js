@@ -1,5 +1,6 @@
 const roteador = require('express').Router();
 const loginController = require('../controllers/loginController');
+const userHelper = require('../helpers/UserHelper');
 
 roteador.get('/authenticate',async function(requisition,response){
     
@@ -8,14 +9,19 @@ roteador.get('/authenticate',async function(requisition,response){
    
    if(userEmail && userSenha){
        //Função de verificar se o usuário existe-> usada mais de uma vez, abstrair
-        //verificar se o usuário existe
+       const isUserRegistred = await userHelper.isUserRegistred(userEmail);
+       if(isUserRegistred){
+            //fazer comparacao da senha digitada e a do banco
 
-        //fazer comparacao da senha digitada e a do banco
+                //retornar -> OK
 
-            //retornar -> OK
-
-            //retorn   -> inválido
-   }
+                //retorn   -> inválido
+   
+       }
+       else{
+          throw new Error('Usuário não encontrado'); 
+        }
+        }
    else{
         response.status(400).send("Preencha todos os campos");
    }

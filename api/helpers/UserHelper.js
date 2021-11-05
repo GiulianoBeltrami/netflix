@@ -1,8 +1,12 @@
+const modelDatabase = require('../../database/models');
+const { user } = modelDatabase;
+
 class UserHelper {
 
-    static async isUserRegistred(databaseModel,userEmail){
+    async isUserRegistred(userEmail){
 
-        const userRegistred = await databaseModel.findOne({where: {email:userEmail} });
+        const userRegistred = await user.findOne({where: {email:userEmail} });
+
         if (userRegistred){
             return true;
         }
