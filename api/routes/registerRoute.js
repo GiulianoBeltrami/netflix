@@ -8,7 +8,7 @@ roteador.post('/',async function(requisition,response){
 
     if(userEmail && userSenha){
         
-        registerController.registerUser(userEmail,userSenha)
+        await registerController.registerUser(userEmail,userSenha)
             .then((user) => {
                 response.status(201);
                 response.json(user);

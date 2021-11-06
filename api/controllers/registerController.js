@@ -17,7 +17,7 @@ module.exports = {
         else{            
             const newUser = await user.create({
                 email: userEmail.toLowerCase(),
-                senha: registerHelper.encryptPassword(userPassword)
+                senha: await registerHelper.encryptPassword(userPassword)
             });
             return newUser;
         }
