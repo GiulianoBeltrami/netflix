@@ -4,16 +4,12 @@ const { user } = modelDatabase;
 class UserHelper {
 
     async isUserRegistred(userEmail){
+        return await user.findOne({where: {email:userEmail} });
+    }
 
-        const userRegistred = await user.findOne({where: {email:userEmail} });
-
-        if (userRegistred){
-            return true;
-        }
-        else{
-            return false;
-        }
-
+    async getPasswordByEmail(userEmail){
+        return await user.findOne({where: {email:userEmail}, attributes:['senha']})
+            .then(user =>{ return user.get('senha')});
     }
 }
 
