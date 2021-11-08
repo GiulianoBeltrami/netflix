@@ -1,7 +1,5 @@
 const roteador = require('express').Router();
 const loginController = require('../controllers/loginController');
-const userHelper = require('../helpers/UserHelper');
-const bcrypt = require('bcryptjs')
 
 roteador.get('/authenticate',async function(requisition,response){
     
@@ -9,9 +7,13 @@ roteador.get('/authenticate',async function(requisition,response){
      
      if(userEmail && userSenha){
 
-          const authencation = await loginController.authenticateLogin(userEmail,userSenha);          
-          if(authencation){ response.send("logado");}
-          else{response.send("erro ao logar");}
+          await loginController.authenticateLogin(userEmail,userSenha)
+               .then((match) => {
+                    response.send(match);
+               })
+               .catch((error) => {
+                    response.send(error.message); 
+               });        
           
      }
      else{

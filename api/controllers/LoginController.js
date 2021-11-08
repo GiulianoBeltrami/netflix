@@ -7,10 +7,9 @@ module.exports = {
 
     async authenticateLogin(userEmail,userPassword){
 
-        const isUserRegistred = userHelper.isUserRegistred(userEmail);
-
-        if (isUserRegistred){
-            //fazer comparacao da senha digitada e a do banco
+        const isUserRegistred = await userHelper.isUserRegistred(userEmail);
+        
+        if(isUserRegistred){
             const userPasswordEncrypted = await userHelper.getPasswordByEmail(userEmail);
             const match = await bcrypt.compare(userPassword, userPasswordEncrypted);
 
@@ -18,12 +17,12 @@ module.exports = {
                 return true;
             }
             else{
-                return false;
+                throw new Error("Senha incorreta");
             }
         }
         else{
             throw new Error("Usuário não encontrado");
         }
-        
+
     }
 }

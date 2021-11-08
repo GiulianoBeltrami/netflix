@@ -1,8 +1,7 @@
 class LoginHelper {
 
-    async checkUser(username, password) {
-        //... fetch user from a db etc.
-    
+    async isCorrectPassword(username, password) {
+        
         const match = await bcrypt.compare(password, user.passwordHash);
     
         if(match) {
