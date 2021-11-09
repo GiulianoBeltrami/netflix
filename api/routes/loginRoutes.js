@@ -4,21 +4,20 @@ const loginController = require('../controllers/loginController');
 roteador.get('/authenticate',async function(requisition,response){
     
      const {userEmail, userSenha} = requisition.body;
-     
-     if(userEmail && userSenha){
 
-          await loginController.authenticateLogin(userEmail,userSenha)
-               .then((match) => {
-                    response.send(match);
-               })
-               .catch((error) => {
-                    response.send(error.message); 
-               });        
-          
-     }
-     else{
-          response.status(400).send("Preencha todos os campos");
-     }
+     //validação de preenchimento dos campos
+
+     await loginController.authenticateLogin(userEmail,userSenha)
+          .then((match) => {
+               response.status(200);
+               response.send(match);
+          })
+          .catch((error) => {
+               response.status(400);
+               response.send(error.message); 
+          });    
+     
+
 });
 
 module.exports = roteador;

@@ -4,14 +4,14 @@ const { user } = modelDatabase;
 class UserHelper {
 
     async isUserRegistred(userEmail){
-        // const userRegistred = await user.findOne({where: {email:userEmail} });
-        // if (userRegistred){
-        //     return true;
-        // }
-        // else{
-        //     throw new Error("Usuário não encontrado");
-        // }
-        return await user.findOne({where: {email:userEmail} });
+        const userRegistred = await user.findOne({where: {email:userEmail} });
+        if (userRegistred){
+            return true;
+        }
+        else{
+            throw new Error("Usuário não encontrado");
+        }
+        
     }
 
     async getPasswordByEmail(userEmail){
@@ -20,6 +20,7 @@ class UserHelper {
                 return user.get('senha')
             });
     }
+    
 }
 
 module.exports =new UserHelper();

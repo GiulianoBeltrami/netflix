@@ -1,14 +1,13 @@
-// class FieldHelper {
+class FieldHelper {
 
-//     validadeNotEmptyField(username, password) {
-//         if(username && password){
+    checkFieldIsEmpty(field) {
+        if(!field){
+            throw new Error("The field: "+field+" is empty");
+        }
+    }
 
-//         }
-//         else(
-//             throw
-//         )
-//     }
     
-// }
+    
+}
 
-// module.exports =new FieldHelper();
+module.exports =new FieldHelper();

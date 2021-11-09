@@ -1,28 +1,20 @@
 const modelDatabase = require('../../database/models');
 const bcrypt = require('bcryptjs');
 const userHelper = require('../helpers/UserHelper');
+const LoginHelper = require('../helpers/LoginHelper');
+
+
 
 module.exports = {
 
-
     async authenticateLogin(userEmail,userPassword){
-
-        const isUserRegistred = await userHelper.isUserRegistred(userEmail);
-        
-        if(isUserRegistred){
-            const userPasswordEncrypted = await userHelper.getPasswordByEmail(userEmail);
-            const match = await bcrypt.compare(userPassword, userPasswordEncrypted);
-
-            if(match){
-                return true;
-            }
-            else{
-                throw new Error("Senha incorreta");
-            }
-        }
-        else{
-            throw new Error("Usuário não encontrado");
-        }
-
+        return await userHelper.isUserRegistred(userEmail)
+            .then(async () => {
+                const loginHelper = new LoginHelper(userEmail);
+                return await loginHelper.isCorrectPassword(userPassword);
+            })
+            .catch(error => {
+                throw error;
+            });
     }
 }

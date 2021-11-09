@@ -1,16 +1,26 @@
-class LoginHelper {
+const bcrypt = require('bcryptjs');
+const userHelper = require('../helpers/UserHelper');
 
-    async isCorrectPassword(username, password) {
+class LoginHelper {
+    
+    constructor(userEmail){
+        this.userEmail = userEmail;
+    }
+
+    async isCorrectPassword(userPassword) {
         
-        const match = await bcrypt.compare(password, user.passwordHash);
-    
-        if(match) {
-            //login
+        const userPasswordEncrypted = await userHelper.getPasswordByEmail(this.userEmail);
+        
+        const match = await bcrypt.compare(userPassword, userPasswordEncrypted);
+
+        if(match){
+            return true;
         }
-    
-        //...
+        else{
+            throw new Error("Senha incorreta");
+        }                
     }
     
 }
 
-module.exports =new LoginHelper();
+module.exports = LoginHelper;
