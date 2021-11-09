@@ -1,9 +1,11 @@
 class FieldHelper {
 
-    checkFieldIsEmpty(field) {
-        if(!field){
-            throw new Error("The field: "+field+" is empty");
+    isFieldFilled(field) {
+        if(typeof field != 'undefined'){
+            return true;
         }
+        return false;
+        
     }
 
     

@@ -1,11 +1,15 @@
 const roteador = require('express').Router();
 const loginController = require('../controllers/loginController');
+const fieldHelper = require('../helpers/FieldHelper');
 
 roteador.get('/authenticate',async function(requisition,response){
     
      const {userEmail, userSenha} = requisition.body;
 
      //validação de preenchimento dos campos
+     if(!isLoginFieldsFilled()){
+          return response.send("Usuário ou senha vazio");
+     }
 
      await loginController.authenticateLogin(userEmail,userSenha)
           .then((match) => {
@@ -18,6 +22,12 @@ roteador.get('/authenticate',async function(requisition,response){
           });    
      
 
+     function isLoginFieldsFilled(){
+          return fieldHelper.isFieldFilled(userEmail) && fieldHelper.isFieldFilled(userSenha);
+     } 
+
 });
+
+
 
 module.exports = roteador;

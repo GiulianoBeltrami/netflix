@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import { Text, View , Image} from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import styles from "./styles";
+import axios from "axios";
+
 
 const Login = ({navigation}) => {
 
@@ -38,6 +40,21 @@ const Login = ({navigation}) => {
                     mode="contained"
                     style={styles.marginBottom}
                     onPress={() => {
+                        axios.get('http://192.168.15.159:3000/api/login/authenticate', {
+                            params:{
+                                userEmail:"teste@teste2.com",
+                                userSenha:"admin"
+                            }
+                        },{
+                            headers: {
+                                "Content-type": "application/json; charset=UTF-8",
+                              }
+                        }).then((response)=>{
+                            console.log(response);
+                        }).catch((error) =>{
+                            console.log(error);
+                        })
+
                         //Enviar requisicao de login
                         //Criar servidor node.js 
                     }}
